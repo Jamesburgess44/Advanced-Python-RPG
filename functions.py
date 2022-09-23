@@ -15,7 +15,7 @@ def battle_phase(hero, enemy):
             hero_attack = hero_attack_choice()
             enemy['health'] -= hero_attack[1]
             if enemy['health'] <= 0:
-                print(f"\n'{hero_attack_phrase(hero)}'You deal {hero_attack[1]} damage to {enemy['name']} with {hero_attack[0]} and it succumbs to your might!")
+                print(f"\n'{hero_attack_phrase(hero)}'You deal {hero_attack[1]} damage to {enemy['name']} with {hero_attack[0]} and it dies from the damage!")
                 print(f"\nYou have defeated {enemy['name']}!")
                 loot_equip_and_monies(hero, enemy)
                 return
@@ -102,5 +102,12 @@ def random_enemy_attack(enemy):
     enemy_attack = random.randint(random_attack[1][0], random_attack[1][1])
     return enemy_attack_name, enemy_attack
 
-
-
+def end_game(hero):
+    if hero['health'] <= 0:
+        print(f"{hero['name']} has died, you failed.")
+        print('\nGame Over.\n')
+        return
+    if hero['health'] > 0:
+        print(f"Well done {hero['name']}! You have won)")
+        return
+    return
